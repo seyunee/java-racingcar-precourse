@@ -4,15 +4,15 @@ public class Car {
     public static final int MOVE_NUM = 4;
 
     private CarName name;
-    private final int turnNo;
+    private int turnNo;
+    private int location;
 
-    public Car(String name, int turnNo) {
+    public Car(String name) {
         this.name = new CarName(name);
-        this.turnNo = turnNo;
     }
 
-    public CarStatus turn(Car car) {
-        if (greaterOrEqual(car.turnNo)) {
+    public CarStatus turn(int turnNo) {
+        if (greaterOrEqual(turnNo)) {
             return CarStatus.MOVE;
         }
         return CarStatus.STOP;
@@ -34,4 +34,13 @@ public class Car {
     public int getTurnNo() {
         return turnNo;
     }
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
 }

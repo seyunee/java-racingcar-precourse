@@ -9,15 +9,16 @@ public class CarTest {
     @Test
     @DisplayName("값이 4 이상이면 전진")
     void moveWhenNumberGreaterOrEqual4() {
-        Car car = new Car("move", 4);
-        assertThat(car.turn(car)).isEqualTo(CarStatus.MOVE);
+        Car car = new Car("move");
+        assertThat(car.turn(4)).isEqualTo(CarStatus.MOVE);
     }
 
     @Test
     @DisplayName("값이 4 미만이면 멈춤")
     void stopWhenNumberLessThen4() {
-        Car car = new Car("stop",3);
-        assertThat(car.turn(car)).isEqualTo(CarStatus.STOP);
+        Car car = new Car("stop");
+        assertThat(car.turn(3)).isEqualTo(CarStatus.STOP);
     }
+
 
 }
