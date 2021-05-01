@@ -2,11 +2,11 @@ package racing;
 
 public class Car {
     public static final int MOVE_NUM = 4;
-    private String name;
+    private CarName name;
     private final int turnNo;
 
     public Car(String name, int turnNo) {
-        this.name = name;
+        this.name = new CarName(name);
         this.turnNo = turnNo;
     }
 

@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racing.CarName;
 import utils.ValidationUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,8 +9,8 @@ public class ValidationTest {
     @Test
     @DisplayName("자동차의 이름은 5자 이하")
     void carNameIsUnder5Letters() {
-        assertThat(ValidationUtil.nameLetter("12345")).isTrue();
-        assertThat(ValidationUtil.nameLetter("123456")).isFalse();
+        assertThat(new CarName("12345").getName()).isEqualTo("12345");
+        assertThat(new CarName("1").getName()).isEqualTo("1");
     }
 
     @Test

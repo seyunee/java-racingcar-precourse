@@ -2,20 +2,14 @@ package utils;
 
 public class ValidationUtil {
     static final String delimiter = ",";
-
-    public static boolean nameLetter(String name) {
-        if (name.length() <= 5) {
-            return true;
-        }
-        return false;
-    }
+    public static final int TRY_MIN_NO = 1;
 
     public static int splitCars(String cars) {
         return cars.split(delimiter).length;
     }
 
     public static boolean tryCount(int count) {
-        if (count > 0) {
+        if (count >= TRY_MIN_NO) {
             return true;
         }
         return false;
