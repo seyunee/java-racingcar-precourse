@@ -4,6 +4,7 @@ import racing.CarName;
 import utils.ValidationUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidationTest {
     @Test
@@ -26,8 +27,17 @@ public class ValidationTest {
     @Test
     @DisplayName("사용자는 몇번 이동을 시도할지 입력한다.")
     void inputTryCount() {
-        assertThat(ValidationUtil.tryCount(6)).isTrue();
-        assertThat(ValidationUtil.tryCount(0)).isFalse();
-        assertThat(ValidationUtil.tryCount(100)).isTrue();
+        assertThat(ValidationUtil.tryCount("6")).isEqualTo(6);
+        assertThat(ValidationUtil.tryCount("100")).isEqualTo(100);
+        assertThatThrownBy(() -> {
+            ValidationUtil.tryCount("0");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1회 이상 입력해주세요.");
+
+        assertThatThrownBy(() -> {
+            ValidationUtil.tryCount("ddddd");
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자를 입력해주세요.");
+
     }
 }
