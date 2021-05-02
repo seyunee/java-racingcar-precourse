@@ -10,6 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingTest {
+    Racing racing = new Racing();
     List<Car> cars = new ArrayList<>();
 
     @BeforeEach
@@ -29,6 +30,32 @@ public class RacingTest {
     void getCarName() {
         for (int i = 0; i < cars.size(); i++) {
             assertThat(cars.get(i).getName()).isEqualTo(Integer.toString(i + 1));
+        }
+    }
+
+    @Test
+    @DisplayName("우승한 자동차의 이름을 반환한다 - 1대 우승")
+    void getWinner() {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).setLocation(i);
+        }
+
+        List<Car> winners = racing.getWinner(cars);
+        for(Car winner : winners){
+            assertThat( winner.getName()).isEqualTo(Integer.toString(5));
+        }
+    }
+
+    @Test
+    @DisplayName("우승한 자동차의 이름을 반환한다 - 여러대 우승")
+    void getMultipleWinner() {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).setLocation(5);
+        }
+
+        List<Car> winners = racing.getWinner(cars);
+        for (int i = 0; i < winners.size(); i++) {
+            assertThat( winners.get(i).getName()).isEqualTo(Integer.toString(i+1));
         }
     }
 
