@@ -4,7 +4,6 @@ public class Car {
     public static final int MOVE_NUM = 4;
 
     private CarName name;
-    private int turnNo;
     private int location = 0;
 
     public Car(String name) {
@@ -29,10 +28,6 @@ public class Car {
 
     public void setName(CarName name) {
         this.name = name;
-    }
-
-    public int getTurnNo() {
-        return turnNo;
     }
 
     public int getLocation() {
