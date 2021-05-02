@@ -15,7 +15,7 @@ public class RacingTest {
 
     @BeforeEach
     void inputUserData() {
-        String input = "1,2,3,4,5";
+        String input = "1, 2,  3,   4   ,5";
         cars = Racing.participate(input);
     }
 
@@ -41,9 +41,7 @@ public class RacingTest {
         }
 
         List<Car> winners = racing.getWinner(cars);
-        for(Car winner : winners){
-            assertThat( winner.getName()).isEqualTo(Integer.toString(5));
-        }
+        assertThat(racing.printWinners(winners)).isEqualTo("5");
     }
 
     @Test
@@ -54,9 +52,6 @@ public class RacingTest {
         }
 
         List<Car> winners = racing.getWinner(cars);
-        for (int i = 0; i < winners.size(); i++) {
-            assertThat( winners.get(i).getName()).isEqualTo(Integer.toString(i+1));
-        }
+        assertThat(racing.printWinners(winners)).isEqualTo("1, 2, 3, 4, 5");
     }
-
 }

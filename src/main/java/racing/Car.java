@@ -5,10 +5,10 @@ public class Car {
 
     private CarName name;
     private int turnNo;
-    private int location;
+    private int location = 0;
 
     public Car(String name) {
-        this.name = new CarName(name);
+        this.name = new CarName(name.trim());
     }
 
     public CarStatus turn(int turnNo) {

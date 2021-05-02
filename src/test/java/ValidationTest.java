@@ -15,6 +15,16 @@ public class ValidationTest {
     }
 
     @Test
+    @DisplayName("자동차이름 중복 불가")
+    void carNameIsDuplicate() {
+        assertThat(ValidationUtil.duplicateCars("1,2,3,4,5", 5)).isTrue();
+        assertThatThrownBy(() -> {
+            ValidationUtil.duplicateCars("1, 1,  1,   1,    1", 5);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복되는 자동차이름이 있습니다. 중복없이 입력해주세요.");
+    }
+
+    @Test
     @DisplayName("자동차 입력은 ,로 구분하여 n대를 입력받는다.")
     void splitWithComma() {
         assertThat(ValidationUtil.splitCars("1,2,3,4,5")).isEqualTo(5);

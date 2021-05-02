@@ -10,18 +10,19 @@ public class Racing {
 
     public static List<Car> participate(String carNames) {
         List<Car> cars = new ArrayList<>();
-        for (String carName : carNames.split(delimiter)) {
-            cars.add(new Car(carName));
+        if(ValidationUtil.duplicateCars(carNames,ValidationUtil.splitCars(carNames))){
+            for (String carName : carNames.split(delimiter)) {
+                cars.add(new Car(carName));
+            }
         }
         return cars;
     }
 
     public void start() {
-        List<Car> cars = new ArrayList<>();
         int tryCount = 0;
         System.out.print("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String carNames = scanner.nextLine();
-        cars = participate(carNames);
+        List<Car> cars = participate(carNames);
 
         System.out.print("시도할 회수는 몇회인가요?");
         String userTryCount = scanner.nextLine();
@@ -30,6 +31,8 @@ public class Racing {
             // todo : 이동시도
         }
 
+        System.out.print(printWinners(getWinner(cars)) + "가 최종 우승했습니다.");
+        scanner.close();
     }
 
     public List<Car> getWinner(List<Car> cars) {
@@ -42,7 +45,16 @@ public class Racing {
                 winners.add(car);
             }
         }
-
         return winners;
+    }
+
+    public String printWinners(List<Car> winners) {
+        String winner = winners.get(0).getName();
+        if (winners.size() > 1) {
+            for (int i = 1; i < winners.size(); i++) {
+                winner += delimiter + " " + winners.get(i).getName();
+            }
+        }
+        return winner;
     }
 }
