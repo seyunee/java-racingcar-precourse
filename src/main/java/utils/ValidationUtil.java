@@ -7,6 +7,7 @@ public class ValidationUtil {
     static final String delimiter = ",";
     static final String regex = "^[0-9]*$";
     public static final int TRY_MIN_NO = 1;
+    public static final int CAR_MIN_NO = 1;
 
     public static int splitCars(String cars) {
         return cars.split(delimiter).length;
@@ -22,6 +23,10 @@ public class ValidationUtil {
 
         if (carNames.size() != count) {
             throw new IllegalArgumentException("중복되는 자동차이름이 있습니다. 중복없이 입력해주세요.");
+        }
+
+        if (carNames.size() < CAR_MIN_NO) {
+            throw new IllegalArgumentException("한대 이상의 자동차를 입력해주세요.");
         }
         return true;
     }
